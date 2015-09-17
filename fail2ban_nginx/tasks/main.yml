@@ -1,0 +1,37 @@
+- name: Checking if fail2ban is already installed
+  stat: path=/etc/fail2ban
+  register: p
+
+- name: Checking if new filers are installed
+  stat: path=/etc/fail2ban/filter.d/nginx-badbots.conf
+  register: filters
+  when: p.stat.isdir is defined and p.stat.isdir
+
+- name: Checking if new jails are installed
+  stat: path=/etc/fail2ban/jail.d/nginx-jails.conf
+  register: jails
+  when: p.stat.isdir is defined and p.stat.isdir
+
+- name: Copying nginx jails
+  sudo: yes
+  copy: src={{item}} dest=/etc/fail2ban/jail.d/
+  with_items:
+  - nginx-jails.conf
+  when: not jails.stat.exists
+  register: new_jails
+
+- name: Copying Filters
+  sudo: yes
+  copy: src={{item}} dest=/etc/fail2ban/filter.d/
+  with_items:
+  - nginx-badbots.conf
+  - nginx-nohome.conf
+  - nginx-noproxy.conf
+  - nginx-noscript.conf
+  when: not filters.stat.exists
+  register: new_filters
+
+- name: service restarting
+  sudo: yes
+  service: name=fail2ban state=restarted
+  when: new_jails.changed or new_filters.changed
