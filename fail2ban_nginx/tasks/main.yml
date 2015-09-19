@@ -10,6 +10,9 @@
   stat: path=/etc/fail2ban/filter.d/nginx-badbots.conf
   register: filters
 
+- name: Ensuring jail.d folder exists
+  file: path=/etc/fail2ban/jail.d state=directory
+
 - name: Checking if new jails are installed
   stat: path=/etc/fail2ban/jail.d/nginx-jails.conf
   register: jails
