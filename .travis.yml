@@ -8,8 +8,8 @@ install:
   - pip install ansible
   #- "printf '[defaults]\nroles_path = ../' > ansible.cfg"
 
-before_script:
-  - echo "NoHostAuthenticationForLocalhost yes" > ~/.ssh/config
+#before_script:
+#  - echo "NoHostAuthenticationForLocalhost yes" > ~/.ssh/config
 
 script:
   - tests/test.sh
