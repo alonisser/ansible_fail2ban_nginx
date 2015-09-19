@@ -1,8 +1,9 @@
 ---
 galaxy_info:
   author: Alon Nisser 
-  description: Ansible role that nginx specifc jails for fail2ban
-  company: 
+  description: "Ansible role that nginx specifc jails for fail2ban"
+  documentation_url:
+  company:
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
   # issue_tracker_url: http://example.com/issue/tracker
@@ -105,14 +106,14 @@ galaxy_info:
   #  versions:
   #  - all
   #  - any
-  #- name: Debian
-  #  versions:
+  - name: Debian
+    versions:
   #  - all
   #  - etch
   #  - jessie
   #  - lenny
   #  - squeeze
-  #  - wheezy
+    - wheezy
   #
   # Below are all categories currently available. Just as with
   # the platforms above, uncomment those that apply to your role.
