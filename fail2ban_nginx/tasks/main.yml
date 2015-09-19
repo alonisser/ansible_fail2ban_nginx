@@ -30,7 +30,7 @@
 - name: Ensuring jail.local exists
   shell: cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
   sudo: yes
-  when: not jail_d_folder.stat.exist and not jail_local.stat.exist
+  when: not jail_d_folder.stat.exists and not jail_local.stat.exists
 
 - name: Copying nginx jails
   sudo: yes
