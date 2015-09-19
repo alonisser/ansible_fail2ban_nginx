@@ -1,0 +1,6 @@
+---
+- hosts: local
+
+  roles:
+   - role: "../fail2ban_nginx"
+
