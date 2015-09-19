@@ -1,7 +1,10 @@
 language: python
-
+env:
+  - UPDATED_FAIL2BAN=true
+  - UPDATED_FAIL2BAN=false
 install:
   - sudo add-apt-repository -y ppa:nginx/stable
+  - if [ "$UPDATED_FAIL2BAN" = "true" ]; then sudo add-apt-repository -y ppa:leonbo/fail2ban ; fi
   - sudo apt-get update
   - sudo apt-get install -y nginx
   - sudo apt-get install -y fail2ban
