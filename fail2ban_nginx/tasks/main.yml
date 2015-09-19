@@ -1,20 +1,22 @@
 - name: Checking if fail2ban is already installed
-  stat: path=/etc/fail2ban
-  register: p
+  stat: path={{fail2ban_service_location}}
+  register: fail2ban_service
+
+- name: Failing if fail2ban is not installed yet
+  fail: Missing fail2ban installation here so would not continue
+  when: not fail2ban_service.stat.exists
 
 - name: Checking if new filers are installed
   stat: path=/etc/fail2ban/filter.d/nginx-badbots.conf
   register: filters
-  when: p.stat.isdir is defined and p.stat.isdir
 
 - name: Checking if new jails are installed
   stat: path=/etc/fail2ban/jail.d/nginx-jails.conf
   register: jails
-  when: p.stat.isdir is defined and p.stat.isdir
 
 - name: Copying nginx jails
   sudo: yes
-  copy: src={{item}} dest=/etc/fail2ban/jail.d/
+  template: src={{item}} dest=/etc/fail2ban/jail.d/
   with_items:
   - nginx-jails.conf
   when: not jails.stat.exists

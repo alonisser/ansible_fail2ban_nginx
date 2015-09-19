@@ -1,2 +1,2 @@
----
-# defaults file for fail2ban_nginx
+nginx_logpath: /var/log/nginx/access.log
+fail2ban_service_location: /etc/init.d/fail2ban
