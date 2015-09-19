@@ -5,7 +5,11 @@ install:
   - sudo apt-get update
   - sudo apt-get install -y nginx
   - sudo apt-get install -y fail2ban
-  - pip install ansible
+  - pip install
+  - sudo service fail2ban restart
+  - ls /etc/fail2ban/ -al
+  - uname -a
+  - lsb_release -a
   #- "printf '[defaults]\nroles_path = ../' > ansible.cfg"
 
 #before_script:
