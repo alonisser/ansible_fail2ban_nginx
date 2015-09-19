@@ -5,7 +5,7 @@ install:
   - sudo apt-get update
   - sudo apt-get install -y nginx
   - sudo apt-get install -y fail2ban
-  - pip install
+  - pip install ansible
   - sudo service fail2ban restart
   - ls /etc/fail2ban/ -al
   - uname -a
