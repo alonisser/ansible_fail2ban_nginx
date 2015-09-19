@@ -2,7 +2,6 @@ language: python
 
 install:
   - sudo add-apt-repository -y ppa:nginx/stable
-  - sudo add-apt-repository -y ppa:leonbo/fail2ban
   - sudo apt-get update
   - sudo apt-get install -y nginx
   - sudo apt-get install -y fail2ban

@@ -9,6 +9,11 @@
 - name: Checking if new filers are installed
   stat: path=/etc/fail2ban/filter.d/nginx-badbots.conf
   register: filters
+#
+
+- name: Checking if jail.d folder exists
+  stat: path=/etc/fail2ban/jail.d
+  register: jail_d_folder
 
 - name: Ensuring jail.d folder exists
   file: path=/etc/fail2ban/jail.d state=directory
@@ -18,6 +23,16 @@
   stat: path=/etc/fail2ban/jail.d/nginx-jails.conf
   register: jails
 
+- name: Checking if jail.local file exists if no jail.d folder
+  stat: path=/etc/fail2ban/jail.local
+  register: jail_local
+  when: not jail_d_folder.stat.exists
+
+- name: Ensuring jail.local exists
+  shell: cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+  sudo: yes
+  when: not jail_local.stat.exists
+
 - name: Copying nginx jails
   sudo: yes
   template: src={{item}} dest=/etc/fail2ban/jail.d/
@@ -25,6 +40,11 @@
   - nginx-jails.conf
   when: not jails.stat.exists
   register: new_jails
+
+- name: Adding new jails to jail.local if not jail.d support
+  sudo: yes
+  assemble: src=/etc/fail2ban/jail.d dest=/etc/fail2ban/jail.local delimiter="###NGINX JAILS###"
+  when: not jail_d_folder.stat.exists
 
 - name: Copying Filters
   sudo: yes
