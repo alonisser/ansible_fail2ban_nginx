@@ -10,4 +10,4 @@ install:
 
 
 script:
-  - tests/syntax_check.sh
+  - tests/test.sh
