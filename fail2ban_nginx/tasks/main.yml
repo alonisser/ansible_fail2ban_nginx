@@ -26,7 +26,6 @@
 - name: Checking if jail.local file exists if no jail.d folder
   stat: path=/etc/fail2ban/jail.local
   register: jail_local
-  when: not jail_d_folder.stat.exists
 
 - name: Ensuring jail.local exists
   shell: cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
