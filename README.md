@@ -19,8 +19,9 @@ Role Variables
 
 Available vars:
 
-nginx_logpath defaults to: /var/log/nginx/access.log
-fail2ban_service_location defaults to: /etc/init.d/fail2ban
+`nginx_logpath` defaults to: /var/log/nginx/access.log
+
+`fail2ban_service_location` defaults to: /etc/init.d/fail2ban
 
 Dependencies
 ------------
@@ -32,12 +33,14 @@ Example Playbook
 
     - hosts: nginx_servers
       roles:
-         - { role: username.rolename, x: 42 }
+        - role: fail2ban_nginx
+         
+Also see the tests for example
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------

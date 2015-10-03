@@ -2,5 +2,5 @@
 - hosts: local
 
   roles:
-   - role: "../fail2ban_nginx"
+   - role: "ansible_fail2ban_nginx"
 

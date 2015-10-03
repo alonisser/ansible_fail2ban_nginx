@@ -11,7 +11,7 @@ install:
   - fail2ban-client --version
   - pip install ansible
   - ls /etc/fail2ban/ -al
-  #- "printf '[defaults]\nroles_path = ../' > ansible.cfg"
+  - printf '[defaults]\nroles_path = ../' > ansible.cfg
 
 script:
   - tests/test.sh
