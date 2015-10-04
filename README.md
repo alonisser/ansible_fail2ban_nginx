@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/alonisser/ansible_fail2ban_nginx.svg)](https://travis-ci.org/alonisser/ansible_fail2ban_nginx)
+[![Build Status](https://travis-ci.org/alonisser/ansible_fail2ban_nginx.svg)](https://travis-ci.org/alonisser/ansible_fail2ban_nginx) [![Ansible Galaxy](https://img.shields.io/ansible/role/5361.svg?style=flat)](https://galaxy.ansible.com/list#/roles/5361)
 
 ansible_fail2ban_nginx
 ======================
